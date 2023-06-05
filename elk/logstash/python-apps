@@ -1,0 +1,8 @@
+DJANGO_LOGLEVEL (DEBUG|INFO|ERROR|WARNING|CRITICAL)
+FILENAME [^\:]*
+METHODNAME [^\:]*
+LINENUMBER \d+
+UUID [a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}
+FS_LOGLEVEL (CONSOLE|ALERT|CRIT?(?:ICAL)?|ERR?(?:OR)?|WARN?(?:ING)?|NOTICE|INFO|DEBUG)
+FS_FILENAME [a-zA-Z0-9_-]+\.[a-zA-Z]{1,2}
+HANGUP_CAUSE (Originate Resulted in Error Cause\: [0-9]{2,3} \[(.)*?\])
