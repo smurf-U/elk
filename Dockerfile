@@ -1,4 +1,4 @@
-FROM sebp/elk:latest
+FROM sebp/elk:8.6.2
 
 RUN mkdir -p /etc/logstash/patterns
 
