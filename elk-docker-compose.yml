@@ -15,7 +15,7 @@ services:
       - logging-network
   elk:
     container_name: elk
-    image: 682115170512.dkr.ecr.us-east-1.amazonaws.com/elk:8.6.2
+    image: 682115170512.dkr.ecr.us-east-1.amazonaws.com/elk:8.7.1
     build: 
       context: ""
       dockerfile: ./Dockerfile
@@ -26,15 +26,19 @@ services:
     networks: 
       - logging-network
     volumes:
-      - ./elk/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      - ./elk/logstash:/etc/logstash
-      - ./elk/kibana.yml:/usr/share/kibana/config/kibana.yml
-      - ./elk/data:/usr/share/elasticsearch/data
-      - ./elk/logs:/usr/share/elasticsearch/logs
+      - ./elk/elasticsearch.yml:/etc/elasticsearch/elasticsearch.yml
+      - ./elk/logstash/python-apps:/etc/logstash/patterns/python-apps
+      - ./elk/logstash/logging.yml:/etc/logstash/logging.yml
+      - ./elk/logstash/conf.d:/etc/logstash/conf.d
+      - ./elk/kibana.yml:/opt/kibana/config/kibana.yml
+      - ./elk_data:/var/lib/elasticsearch
 networks: 
   logging-network:
     driver: bridge
 volumes:
   elk:
-  nginx:  
+  nginx:
+  elk_data:
+  elk_logs:
+
 
