@@ -8,11 +8,22 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/sites-available/default.conf
       - ./nginx/logs:/var/log/nginx
-      - ./nginx/certs:/etc/nginx/certs
+      - ./nginx/certbot/conf:/etc/letsencrypt
+      - ./nginx/certbot/www:/var/www/certbot
     ports:
       - 80:80
+      - 443:443
     networks: 
       - logging-network
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    networks: 
+      - logging-network
+    volumes: 
+      - ./nginx/certbot/conf:/etc/letsencrypt
+      - ./nginx/certbot/www:/var/www/certbot
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email {email} -d {domain} --agree-tos
   elk:
     container_name: elk
     image: 682115170512.dkr.ecr.us-east-1.amazonaws.com/elk:8.7.1
