@@ -96,4 +96,4 @@ cluster.initial_master_nodes: ["elk"]
 #
 # Enable/disable security (enabled by default since version 8.0)
 #
-xpack.security.enabled: false
+xpack.security.enabled: true
